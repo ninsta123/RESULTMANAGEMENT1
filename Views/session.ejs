@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <%- include('./Partials/header.ejs') %>
+<div class=" py-3" style="position: fixed; top: 10%; width: 100%;">
+    <div class="">
+        <form action="add?id=<%= username %> " method="post">
+            <button class="btn btn-primary" style="position: fixed; right: 10%;" type="submit"> Add Result </button> 
+        </form>
+        <form action="logout" method="get">
+            <button class="btn btn-danger" style="position: fixed; right: 5%;" type="submit"> logout </button> 
+        </form>
+    </div>
+</div>
+   <div class="text-center" style="position: fixed; top: 20%; width: 100%;">
+    <table style="width: 100%; border: 1px solid black;">
+        <thead style="border: 1px solid black">
+            <tr>
+                <th style="width: 10%">Roll No.</th>
+                <th style="width: 25%"> Name</th>
+                <th style="width: 25%">Date Of Birth</th>
+                <th style="width: 10%">Score</th>
+                <th style="width: 30%">Actions</th>
+            </tr>
+        </thead>
+         <tbody>
+            <%
+            for (i=0;i<studentData.length;i++) {
+            %>
+            <tr>
+                <td style="width: 10%">
+                    <%= studentData[i].rollno %>
+                </td>
+                <td style="width: 25%">
+                    <%= studentData[i].name %>
+                </td>
+                <td style="width: 25%">
+                    <%= studentData[i].dob %>
+                </td>
+                <td style="width: 10%">
+                    <%= studentData[i].marks %>
+                </td>
+                <td style="width: 30%">
+                    <a href="update?uid=<%= username %>&sid=<%= studentData[i].rollno%>" style="text-decoration: none;">  <button class="btn btn-primary">Update</button> </a> 
+                    <a href="delete?uid=<%= username %>&sid=<%= studentData[i].rollno%>" style="text-decoration: none;" > <button class="btn btn-danger">Delete</button> </a> 
+                </td>
+            </tr>
+            <%
+           }
+            %>
+        </tbody> 
+    </table>
+   </div>
+    
+</body>
+
+</html>
